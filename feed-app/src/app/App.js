@@ -3,7 +3,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "antd";
 import Login from "../user/Login.js";
-
+import Signup from "../user/Signup";
 const { Content } = Layout;
 
 const App = () => {
@@ -16,6 +16,16 @@ const App = () => {
         <div className="container">
           <Routes>
             <Route
+    exact
+    path="/signup"
+    element={
+        <Signup
+            currentUser={currentUser}
+            isAuthenticated={isAuthenticated}
+        />
+    }
+/>
+            <Route
               path="/login"
               element={
                 <Login
@@ -25,6 +35,7 @@ const App = () => {
               }
             />
           </Routes>
+          
         </div>
       </Content>
     </Layout>
