@@ -2,30 +2,46 @@ import React, { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "antd";
-import Login from "../user/Login.js";
+import Header from "../components/header/Header.js";
+import Login from "../user/Login";
 import Signup from "../user/Signup";
+import Profile from "../user/profile/Profile";
+import Home from "../user/home/Home";
+import MyFeeds from "../user/myFeeds/MyFeeds.js"
+
 const { Content } = Layout;
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <Layout className="layout">
       <Content className="app-content">
         <div className="container">
           <Routes>
-            <Route
-    exact
-    path="/signup"
-    element={
-        <Signup
-            currentUser={currentUser}
-            isAuthenticated={isAuthenticated}
-        />
-    }
+          <Route
+exact
+path="/"
+element={
+  <Header>
+    <Home currentUser={currentUser} />
+  </Header>
+}
+/>
+
+<Route
+exact
+path="/myFeeds"
+element={
+  <Header>
+    <MyFeeds currentUser={currentUser} />
+  </Header>
+}
 />
             <Route
+            
+              exact
               path="/login"
               element={
                 <Login
@@ -34,8 +50,47 @@ const App = () => {
                 />
               }
             />
+
+<Route
+exact
+path="/myFeeds"
+element={
+  <Header>
+    <MyFeeds currentUser={currentUser} />
+  </Header>
+}
+/>
+            
+            <Route
+              exact
+              path="/signup"
+              element={
+                <Signup
+                  currentUser={currentUser}
+                  isAuthenticated={isAuthenticated}
+                />
+              }
+            />
+            
+            <Route
+              exact
+              path="/profile"
+              element={
+                <Header>
+                  <Profile currentUser={currentUser} />
+                </Header>
+              }
+            />
+            <Route
+exact
+path="/myFeeds"
+element={
+  <Header>
+    <MyFeeds currentUser={currentUser} />
+  </Header>
+}
+/>
           </Routes>
-          
         </div>
       </Content>
     </Layout>
