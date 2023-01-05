@@ -1,6 +1,15 @@
 import React, { useEffect } from "react";
 import "./header.css";
 import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { AppContext } from "../../context/applicationContext";
+
+
+const appContext = useContext(AppContext);
+
+const logout = () => {
+    appContext.logout();
+};
 
 const Header = (props) => {
   const logout = () => {
@@ -64,5 +73,7 @@ const Header = (props) => {
     </>
   );
 };
+
+
 
 export default Header;
